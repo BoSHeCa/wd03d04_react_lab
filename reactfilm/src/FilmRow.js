@@ -1,10 +1,9 @@
 import React from 'react'
-
+import FilmPoster from './FilmPoster'
 const FilmRow = (props) => {
     return (
 <div className="film-row">
-  <img src={'https://image.tmdb.org/t/p/w500/'+props.poster} alt="" />
-
+<FilmPoster poster={props.poster}></FilmPoster>
   <div className="film-summary">
     <h1 >{props.title}</h1>
     <p>{props.date}</p>
