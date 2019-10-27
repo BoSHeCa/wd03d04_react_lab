@@ -27,7 +27,7 @@ export default class Fave extends Component {
 
         return (
 <div className={"film-row-fave"+((this.state.isFave)?" remove_from_queue":" add_to_queue")} onClick={handleClick} >
-  <p className="material-icons" >{(this.state.isFave)?" remove_from_queue":" add_to_queue"}</p>
+  <p className="material-icons" >{(this.state.isFave)?" remove_from_queue":" add_to_queue" }</p>
 
   
 </div>

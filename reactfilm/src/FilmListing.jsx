@@ -34,10 +34,10 @@ export default class FilmListing extends Component {
 }
 
 
-  handleFilterClick = (filter) =>{
+  handleFilterClick = (faves) =>{
     console.log("handleFilterClick");
     this.setState(
-      {filter:filter}
+      {filter:faves}
     )
     
     }
@@ -57,6 +57,9 @@ export default class FilmListing extends Component {
         </div>
         {/* <div className="film-list-filter" onClick={() => this.handleFilterClick('faves')} > */}
         <div className={`film-list-filter ${this.state.filter === 'faves' ? 'is-active' : ''}`} onClick={() => this.handleFilterClick('faves')}>
+        {/* <div className={`material-icons ${this.state.filter === 'faves' ? 'is-active' : ''}`} onClick={() => this.handleFilterClick('faves')}> */}
+
+        
             FAVES
             <span className="section-count">0</span>
         </div>
