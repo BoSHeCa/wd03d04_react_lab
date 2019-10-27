@@ -2,7 +2,6 @@ import React from 'react'
 import FilmRow from './FilmRow'
 
 const FilmListing = (props) => {
-    console.log(props);
     
     return (
         <div>
