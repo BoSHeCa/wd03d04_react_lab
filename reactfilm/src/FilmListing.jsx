@@ -1,76 +1,94 @@
-// import React from 'react'
-// import FilmRow from './FilmRow'
-
-// const FilmListing = (props) => {
-    
-// var handleFilterClick = (filter) =>{
-
-
-// }
-//     return (
-//       //   <div>
-//       //   <h1 className="section-title">FILMS</h1>
-//       //   {props.films.map(item=> <FilmRow title={item.title} date={item.release_date.split('-')[0]} id={item.id} poster={item.poster_path}/>)}
-
-//       // </div>
-    
-//     )
-// }
-
-// export default FilmListing
-
-import React, { Component } from 'react'
-import FilmRow from './FilmRow'
-
+import React, {
+  Component
+} from "react";
+import FilmRow from "./FilmRow";
 
 export default class FilmListing extends Component {
-  
-  constructor (){
-    super()
-    
+  constructor() {
+    super();
+
     this.state = {
-      filter: "all",
+      filter: "all"
+    };
   }
-}
 
-
-  handleFilterClick = (faves) =>{
+  handleFilterClick = filter => {
     console.log("handleFilterClick");
-    this.setState(
-      {filter:faves}
-    )
-    
-    }
+    this.setState({
+      filter: filter
+    });
+  };
   render() {
+    const faveList = this.props.films.filter((film) => {
+      return this.props.faves.includes(film);
+    })
+    const show = this.state.filter == 'all' ? this.props.films : faveList;
+    return ( <
+      div >
+      <
+      div className = "film-list" >
+      <
+      h1 className = "section-title" > FILMS < /h1> {
+        show.map(item => ( <
+          FilmRow title = {
+            item.title
+          }
+          date = {
+            item.release_date.split("-")[0]
+          }
+          key = {
+            item.id
+          }
+          poster = {
+            item.poster_path
+          }
+          onFaveToggle = {
+            () => this.props.onFaveToggle(item)
+          }
+          isFave = {
+            this.props.faves.includes(item)
+          }
+          onDetailsClick = {
+            this.props.onDetailsClick
+          }
+          />
+        ))
+      }
 
-    return (
-        <div>
-          <div className="film-list">
-    <h1 className="section-title">FILMS</h1>
-    {this.props.films.map(item=> <FilmRow title={item.title} date={item.release_date.split('-')[0]} id={item.id} poster={item.poster_path}/>)}
-
-    <div className="film-list-filters">
-        {/* <div className="film-list-filter" onClick={() => this.handleFilterClick('All')}> */}
-        <div className={`film-list-filter ${this.state.filter === 'all' ? 'is-active' : ''}`} onClick={() => this.handleFilterClick('all')}>
-            ALL
-            <span className="section-count">{this.props.films.length}</span>
-        </div>
-        {/* <div className="film-list-filter" onClick={() => this.handleFilterClick('faves')} > */}
-        <div className={`film-list-filter ${this.state.filter === 'faves' ? 'is-active' : ''}`} onClick={() => this.handleFilterClick('faves')}>
-        {/* <div className={`material-icons ${this.state.filter === 'faves' ? 'is-active' : ''}`} onClick={() => this.handleFilterClick('faves')}> */}
-
-        
-            FAVES
-            <span className="section-count">0</span>
-        </div>
-    </div>
-
-    </div>
-    {/* {allFilms} */}
-
-    </div>
-    )
+      <
+      div className = "film-list-filters" > {
+        /* <div className="film-list-filter" onClick={() => this.handleFilterClick('All')}> */ } <
+      div className = {
+        `film-list-filter ${
+                this.state.filter === "all" ? "is-active" : ""
+              }`
+      }
+      onClick = {
+        () => this.handleFilterClick("all")
+      } >
+      ALL <
+      span className = "section-count" > {
+        this.props.films.length
+      } < /span> <
+      /div> {
+        /* <div className="film-list-filter" onClick={() => this.handleFilterClick('faves')} > */ } <
+      div className = {
+        `film-list-filter ${
+                this.state.filter === "faves" ? "is-active" : ""
+              }`
+      }
+      onClick = {
+        () => this.handleFilterClick("faves")
+      } >
+      FAVES <
+      span className = "section-count" > {
+        this.props.faves.length
+      } < /span> <
+      /div> <
+      /div> <
+      /div> {
+        /* {allFilms} */ } <
+      /div>
+    );
   }
 }
-
-
